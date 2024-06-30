@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>TALLER MACKUYN</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
+    <!-- Compiled and minified Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+    <!-- Minified JS library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Compiled and minified Bootstrap JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+    <style>
+        /* Estilo para los espacios de escritura */
+        input[type="text"],
+        input[type="password"],
+        input[type="email"],
+        textarea {
+            width: calc(100% - 20px); /* Ancho menos márgenes */
+            padding: 10px;
+            margin: 5px; /* Márgenes entre elementos */
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="bg-dark py-5">
+        <div>
+            <!-- Navigation-->
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container px-4 px-lg-5">
+                    <a class="navbar-brand" href="Index.html">TALLER MACKUYN</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                            <li class="nav-item"><a class="nav-link" href="register.html" >CREAR CUENTA</a></li>
+                            <li class="nav-item"><a class="nav-link active" href="login.html" target=>INGRESAR</a></li>
+                            <li class="nav-item"><a class="nav-link" href="productos.html" target=>PRODUCTOS</a></li>
+                            <li class="nav-item"><a class="nav-link" href="contacto.html" target=>CONTACTANOS</a></li>
+                            <li class="nav-item"><a class="nav-link" href="quienessomos.html" target=>QUIENES SOMOS</a></li>
+                        </ul>
+                        <form class="d-flex">
+                            <button class="btn btn-outline-dark" type="submit">
+                                <i class="bi-cart-fill me-1"></i>
+                                SHOP
+                                <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="text-center text-white">
+                <h1 class="display-4 fw-bolder"> INICIAR SESIÓN</h1>
+            </div>
+        </div>
+    </header>
+
+    <!-- Login Form Section -->
+    <div class="container">
+        <h2>INGRESAR</h2>
+        <form action="productos.html" method="POST" id="form">
+            <div>
+                <label for="nombre">Usuario:</label>
+                <input type="text" name="nombre" id="nombre" required>
+            </div>
+            <div>
+                <label for="contrasena">Contraseña:</label>
+                <input type="password" name="contrasena" id="contrasena" required>
+            </div>
+            <button type="submit">Ingresar</button>
+            <p class="warnings" id="warnings"></p>
+            <div class="forgot-password">
+                <a href="#">¿Olvidó su contraseña?</a>
+            </div>
+            <div class="register-link">
+                <a href="register.html">Registrarse</a>
+            </div>
+        </form>
+    </div>
+
+    <!-- Validation Script -->
+    <script>
+        document.getElementById('form').addEventListener('submit', function(event) {
+            // Resetear mensajes de error
+            document.getElementById('warnings').innerText = '';
+            
+            // Obtener valores de los campos
+            var nombre = document.getElementById('nombre').value.trim();
+            var contrasena = document.getElementById('contrasena').value.trim();
+            
+            // Validación del nombre (entre 8 y 15 caracteres)
+            if (nombre.length < 8 || nombre.length > 15) {
+                mostrarError('El nombre debe contener entre 8 y 15 caracteres.');
+                event.preventDefault(); // Detener el envío del formulario
+                return;
+            }
+
+            // Validación de la contraseña (entre 5 y 10 caracteres, al menos una mayúscula y un número)
+            if (!validarContrasena(contrasena)) {
+                mostrarError('La contraseña debe contener entre 5 y 10 caracteres, al menos una letra mayúscula y un número.');
+                event.preventDefault();
+                return;
+            }
+
+            // Mostrar mensaje de ingreso correcto
+            mostrarMensaje('Ingreso correctamente');
+
+            // Redirigir a productos.html después de 1 segundo
+            setTimeout(function() {
+                window.location.href = 'productos.html';
+            }, 3000);
+        });
+
+        function mostrarError(mensaje) {
+            document.getElementById('warnings').innerText = mensaje;
+        }
+
+        function mostrarMensaje(mensaje) {
+            var warnings = document.getElementById('warnings');
+            warnings.innerText = mensaje;
+            warnings.style.color = 'green'; // Cambiar color del mensaje a verde
+        }
+
+        function validarContrasena(contrasena) {
+            // Expresión regular para validar contraseña (entre 5 y 10 caracteres, al menos una mayúscula y un número)
+            return /^(?=.*[A-Z])(?=.*\d).{5,10}$/.test(contrasena);
+        }
+    </script>
+
+    <!-- Footer Section -->
+    <footer class="py-5 bg-dark">
+        <div class="container"><p class="m-0 text-center text-white">© 2024 TALLER MACKUYN. Todos los derechos reservados.</p></div>
+    </footer>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
+</body>
+</html>
