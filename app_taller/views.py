@@ -4,9 +4,7 @@ from django.shortcuts import render
 
 
 def index(request):
-    context={
-        'css_file':'css/styles.css'
-    }
+    context={}
     return render(request, 'app_taller/index.html', context)
 
 def contacto(request):
